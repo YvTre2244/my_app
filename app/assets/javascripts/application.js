@@ -16,6 +16,7 @@
 //= require toastr
 //= require turbolinks
 //= require_tree .
+/*global toastr*/
 
 toastr.options= {
     "positionClass":"toast-bottom-right"
