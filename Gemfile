@@ -44,6 +44,8 @@ gem 'font-awesome-sass'
 # Intégration Google Maps
 gem 'geocoder'
 
+#JQuery UI
+gem 'jquery-ui-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
