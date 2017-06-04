@@ -9,16 +9,36 @@ class ReservationsController < ApplicationController
         render json: reservations
     end    
     
+    def preview
+        start_date = Date.parse(params[:start_date])
+        end_date = Date.parse(params[:end_date])
+        
+        output = {
+            conflict: is_conflict(start_date, end_date)
+        }
+        
+        render json: output
+    end    
     
     def create
         @reservation = current_user.reservations.create(reservation_params)
         redirect_to @reservation.room, notice: "Votre réservation a été acceptée"
     end    
     
+    def your_trips
+        @trips = current_user.reservations
+    end    
+    
+    
+    def your_reservations
+     
+          @rooms = current_user.rooms
+     
+    end
     
     private
     def reservation_params
-        params.require(:reservations).permit(:start_date, :end_date, :price, :total, :room_id)
+        params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)
     end    
     
 end    
