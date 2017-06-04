@@ -47,6 +47,9 @@ gem 'geocoder'
 #JQuery UI
 gem 'jquery-ui-rails'
 
+#Fonction de recherche
+gem 'ransack'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
