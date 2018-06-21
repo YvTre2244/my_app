@@ -6,6 +6,7 @@ class ReservationsController < ApplicationController
         room = Room.find(params[:room_id])
         today = Date.today
         reservations = room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+        
         render json: reservations
     end    
     
@@ -19,6 +20,8 @@ class ReservationsController < ApplicationController
         
         render json: output
     end    
+    
+
     
     def create
         @reservation = current_user.reservations.create(reservation_params)
@@ -41,4 +44,12 @@ class ReservationsController < ApplicationController
         params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)
     end    
     
+    
+    private
+    def is_conflict(start_date, end_date)
+        room = Room.find(params[:room_id])
+ 
+        check = room.reservations.where("? < start_date AND end_date < ?", start_date, end_date)
+        check.size > 0? true : false
+    end
 end    
